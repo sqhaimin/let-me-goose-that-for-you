@@ -34,7 +34,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
   /* ===== GENERATOR PAGE ===== */
@@ -51,269 +51,141 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .logo {
-    font-size: 4rem;
-    margin-bottom: 0.5rem;
-    filter: drop-shadow(0 0 20px var(--orange-glow));
-  }
+  .logo { font-size: 4rem; margin-bottom: 0.5rem; filter: drop-shadow(0 0 20px var(--orange-glow)); }
 
   h1 {
-    font-size: 2rem;
-    font-weight: 800;
-    margin-bottom: 0.25rem;
+    font-size: 2rem; font-weight: 800; margin-bottom: 0.25rem;
     background: linear-gradient(135deg, var(--orange), #ff9a5c);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
 
-  .subtitle {
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    margin-bottom: 2.5rem;
-    line-height: 1.5;
-  }
+  .subtitle { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 2.5rem; line-height: 1.5; }
 
-  .input-group {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
+  .input-group { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
 
   .input-group input {
-    flex: 1;
-    padding: 0.9rem 1.2rem;
-    border-radius: 12px;
-    border: 2px solid var(--border);
-    background: var(--surface);
-    color: var(--text);
-    font-size: 1rem;
-    font-family: 'Inter', sans-serif;
-    outline: none;
-    transition: border-color 0.2s;
+    flex: 1; padding: 0.9rem 1.2rem; border-radius: 12px; border: 2px solid var(--border);
+    background: var(--surface); color: var(--text); font-size: 1rem;
+    font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s;
   }
 
-  .input-group input:focus {
-    border-color: var(--orange);
-    box-shadow: 0 0 0 3px var(--orange-glow);
-  }
-
-  .input-group input::placeholder {
-    color: var(--text-dim);
-  }
+  .input-group input:focus { border-color: var(--orange); box-shadow: 0 0 0 3px var(--orange-glow); }
+  .input-group input::placeholder { color: var(--text-dim); }
 
   .btn {
-    padding: 0.9rem 1.5rem;
-    border-radius: 12px;
-    border: none;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'Inter', sans-serif;
-    white-space: nowrap;
+    padding: 0.9rem 1.5rem; border-radius: 12px; border: none; font-size: 1rem;
+    font-weight: 600; cursor: pointer; transition: all 0.2s;
+    font-family: 'Inter', sans-serif; white-space: nowrap;
   }
 
   .btn-primary {
     background: linear-gradient(135deg, var(--orange), #e85d20);
-    color: white;
-    box-shadow: 0 4px 15px var(--orange-glow);
+    color: white; box-shadow: 0 4px 15px var(--orange-glow);
   }
 
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 25px var(--orange-glow);
-  }
-
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 25px var(--orange-glow); }
   .btn-primary:active { transform: translateY(0); }
 
-  /* Link output */
   #link-output {
-    display: none;
-    background: var(--surface);
-    border: 2px solid var(--border);
-    border-radius: 14px;
-    padding: 1.2rem;
-    text-align: left;
-    animation: fadeIn 0.4s ease;
+    display: none; background: var(--surface); border: 2px solid var(--border);
+    border-radius: 14px; padding: 1.2rem; text-align: left; animation: fadeIn 0.4s ease;
   }
-
   #link-output.show { display: block; }
 
-  .link-label {
-    font-size: 0.8rem;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-  }
-
-  .link-row {
-    display: flex;
-    gap: 0.5rem;
-    align-items: center;
-  }
+  .link-label { font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; font-weight: 600; }
+  .link-row { display: flex; gap: 0.5rem; align-items: center; }
 
   .link-url {
-    flex: 1;
-    padding: 0.7rem 1rem;
-    border-radius: 8px;
-    background: var(--terminal-bg);
-    border: 1px solid var(--border);
-    color: var(--orange);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.82rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    cursor: text;
-    user-select: all;
+    flex: 1; padding: 0.7rem 1rem; border-radius: 8px; background: var(--terminal-bg);
+    border: 1px solid var(--border); color: var(--orange);
+    font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap; cursor: text; user-select: all;
   }
 
   .btn-copy {
-    padding: 0.7rem 1rem;
-    border-radius: 8px;
-    border: 2px solid var(--border);
-    background: var(--surface2);
-    color: var(--text);
-    font-size: 0.9rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
+    padding: 0.7rem 1rem; border-radius: 8px; border: 2px solid var(--border);
+    background: var(--surface2); color: var(--text); font-size: 0.9rem;
+    cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; font-weight: 600;
   }
+  .btn-copy:hover { border-color: var(--orange); background: var(--surface); }
+  .btn-copy.copied { border-color: var(--green); color: var(--green); }
 
-  .btn-copy:hover {
-    border-color: var(--orange);
-    background: var(--surface);
-  }
-
-  .btn-copy.copied {
-    border-color: var(--green);
-    color: var(--green);
-  }
-
-  .footer-note {
-    margin-top: 2rem;
-    color: var(--text-dim);
-    font-size: 0.8rem;
-  }
-
-  .footer-note a {
-    color: var(--orange);
-    text-decoration: none;
-  }
-
+  .footer-note { margin-top: 2rem; color: var(--text-dim); font-size: 0.8rem; }
+  .footer-note a { color: var(--orange); text-decoration: none; }
   .footer-note a:hover { text-decoration: underline; }
 
   /* ===== ANIMATION PAGE ===== */
-  #animation {
-    display: none;
-    width: 100%;
-    max-width: 720px;
-    padding: 1.5rem;
-    animation: fadeIn 0.5s ease;
-  }
-
+  #animation { display: none; width: 100%; max-width: 760px; padding: 1.5rem; animation: fadeIn 0.5s ease; }
   #animation.show { display: block; }
 
   .terminal {
-    background: var(--terminal-bg);
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    background: var(--terminal-bg); border-radius: 14px; border: 1px solid var(--border);
+    overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   }
 
   .terminal-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 16px;
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px; padding: 12px 16px;
+    background: var(--surface); border-bottom: 1px solid var(--border);
   }
 
-  .terminal-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-  }
-
+  .terminal-dot { width: 12px; height: 12px; border-radius: 50%; }
   .dot-red { background: #ff5f57; }
   .dot-yellow { background: #febc2e; }
   .dot-green { background: #28c840; }
 
-  .terminal-title {
-    flex: 1;
-    text-align: center;
-    font-size: 0.82rem;
-    color: var(--text-dim);
-    font-weight: 500;
-  }
+  .terminal-title { flex: 1; text-align: center; font-size: 0.82rem; color: var(--text-dim); font-weight: 500; }
 
   .terminal-body {
-    padding: 1.5rem;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.9rem;
-    line-height: 1.7;
-    min-height: 280px;
+    padding: 1.5rem; font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem; line-height: 1.7; min-height: 320px; max-height: 70vh; overflow-y: auto;
   }
 
-  .prompt-line {
-    color: var(--text-dim);
-  }
-
-  .prompt-marker {
-    color: var(--orange);
-    font-weight: 700;
-  }
-
-  .typed-text {
-    color: var(--text);
-  }
+  .prompt-line { color: var(--text-dim); margin-bottom: 0.25rem; }
+  .prompt-marker { color: var(--orange); font-weight: 700; }
+  .typed-text { color: var(--text); }
 
   .cursor-blink {
-    display: inline-block;
-    width: 9px;
-    height: 1.1em;
-    background: var(--orange);
-    vertical-align: text-bottom;
-    animation: blink 1s step-end infinite;
+    display: inline-block; width: 9px; height: 1.1em; background: var(--orange);
+    vertical-align: text-bottom; animation: blink 1s step-end infinite;
   }
+  @keyframes blink { 50% { opacity: 0; } }
 
-  @keyframes blink {
-    50% { opacity: 0; }
-  }
-
-  .thinking {
-    color: var(--text-dim);
-    margin-top: 1rem;
+  /* Goose response area */
+  .goose-response {
+    margin-top: 1.2rem; padding: 1rem 0; border-top: 1px solid var(--border);
     display: none;
   }
+  .goose-response.show { display: block; }
 
-  .thinking.show { display: block; }
-
-  .thinking-dots::after {
-    content: '';
-    animation: dots 1.5s steps(4, end) infinite;
+  .goose-header {
+    display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;
+    color: var(--orange); font-weight: 700; font-size: 0.9rem;
   }
 
-  @keyframes dots {
-    0% { content: ''; }
-    25% { content: '.'; }
-    50% { content: '..'; }
-    75% { content: '...'; }
+  .goose-answer {
+    color: var(--text); line-height: 1.8; white-space: pre-wrap; word-wrap: break-word;
   }
 
-  /* Reveal */
+  .goose-answer .highlight { color: var(--orange); font-weight: 600; }
+
+  .thinking-inline {
+    color: var(--text-dim); display: none; margin-top: 0.75rem;
+  }
+  .thinking-inline.show { display: flex; align-items: center; gap: 0.5rem; }
+
+  .spinner {
+    width: 16px; height: 16px; border: 2px solid var(--border);
+    border-top-color: var(--orange); border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Reveal banner */
   #reveal {
-    display: none;
-    text-align: center;
-    padding: 2rem 1.5rem;
+    display: none; text-align: center; padding: 2rem 1.5rem; margin-top: 1.5rem;
+    background: var(--surface); border-radius: 14px; border: 2px solid var(--orange);
     animation: revealPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
-
   #reveal.show { display: block; }
 
   @keyframes revealPop {
@@ -324,79 +196,50 @@
   .reveal-emoji { font-size: 3rem; margin-bottom: 0.5rem; }
 
   .reveal-text {
-    font-size: 1.6rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
+    font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem;
     background: linear-gradient(135deg, var(--orange), #ff9a5c);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
 
-  .reveal-sub {
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
-  }
+  .reveal-sub { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 1.5rem; }
 
   .btn-goose {
-    display: inline-block;
-    padding: 0.8rem 2rem;
-    border-radius: 10px;
+    display: inline-block; padding: 0.8rem 2rem; border-radius: 10px;
     background: linear-gradient(135deg, var(--orange), #e85d20);
-    color: white;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1rem;
-    transition: all 0.2s;
-    box-shadow: 0 4px 15px var(--orange-glow);
+    color: white; text-decoration: none; font-weight: 700; font-size: 1rem;
+    transition: all 0.2s; box-shadow: 0 4px 15px var(--orange-glow);
+    font-family: 'Inter', sans-serif;
   }
-
-  .btn-goose:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 25px var(--orange-glow);
-  }
+  .btn-goose:hover { transform: translateY(-2px); box-shadow: 0 6px 25px var(--orange-glow); }
 
   #skip-btn {
-    position: fixed;
-    bottom: 1.5rem;
-    right: 1.5rem;
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--text-dim);
-    font-size: 0.8rem;
-    cursor: pointer;
-    display: none;
-    font-family: 'Inter', sans-serif;
-    transition: all 0.2s;
+    position: fixed; bottom: 1.5rem; right: 1.5rem; padding: 0.5rem 1rem;
+    border-radius: 8px; border: 1px solid var(--border); background: var(--surface);
+    color: var(--text-dim); font-size: 0.8rem; cursor: pointer; display: none;
+    font-family: 'Inter', sans-serif; transition: all 0.2s;
   }
-
   #skip-btn.show { display: block; }
   #skip-btn:hover { border-color: var(--orange); color: var(--text); }
 
-  /* Mobile */
   @media (max-width: 600px) {
     .input-group { flex-direction: column; }
     h1 { font-size: 1.5rem; }
-    .terminal-body { font-size: 0.8rem; padding: 1rem; }
+    .terminal-body { font-size: 0.75rem; padding: 1rem; }
     .reveal-text { font-size: 1.3rem; }
   }
 </style>
 </head>
 <body>
 
-<!-- ===== GENERATOR PAGE ===== -->
+<!-- GENERATOR PAGE -->
 <div id="generator">
   <div class="logo">🪿</div>
   <h1>Let Me Goose That For You</h1>
   <p class="subtitle">For people who find it more convenient to bother you<br>than to ask Goose.</p>
-
   <div class="input-group">
     <input type="text" id="question-input" placeholder="Type their question here..." autofocus>
     <button class="btn btn-primary" id="generate-btn">Goose it 🪿</button>
   </div>
-
   <div id="link-output">
     <div class="link-label">Share this link 👇</div>
     <div class="link-row">
@@ -404,13 +247,12 @@
       <button class="btn-copy" id="copy-btn">📋 Copy</button>
     </div>
   </div>
-
   <p class="footer-note">
     Powered by <a href="https://github.com/block/goose" target="_blank">Goose</a> — the open-source AI agent by Block
   </p>
 </div>
 
-<!-- ===== ANIMATION PAGE ===== -->
+<!-- ANIMATION PAGE -->
 <div id="animation">
   <div class="terminal">
     <div class="terminal-bar">
@@ -419,21 +261,29 @@
       <div class="terminal-dot dot-green"></div>
       <div class="terminal-title">goose — session</div>
     </div>
-    <div class="terminal-body">
+    <div class="terminal-body" id="terminal-body">
       <div class="prompt-line">
-        <span class="prompt-marker">goose&gt; </span>
+        <span class="prompt-marker">❯ </span>
         <span class="typed-text" id="typed-output"></span><span class="cursor-blink" id="cursor"></span>
       </div>
-      <div class="thinking" id="thinking">
-        <span style="color: var(--orange);">🪿 Goose is thinking</span><span class="thinking-dots"></span>
+
+      <div class="thinking-inline" id="thinking">
+        <div class="spinner"></div>
+        <span>Goose is working on it...</span>
       </div>
-      <div id="reveal">
-        <div class="reveal-emoji">🪿</div>
-        <div class="reveal-text">Was that so hard?</div>
-        <p class="reveal-sub">Next time, just ask Goose.</p>
-        <a href="https://github.com/block/goose" target="_blank" class="btn-goose">Try Goose yourself →</a>
+
+      <div class="goose-response" id="goose-response">
+        <div class="goose-header">🪿 Goose</div>
+        <div class="goose-answer" id="goose-answer"></div>
       </div>
     </div>
+  </div>
+
+  <div id="reveal">
+    <div class="reveal-emoji">🪿</div>
+    <div class="reveal-text">Was that so hard?</div>
+    <p class="reveal-sub">Next time, just ask Goose yourself.</p>
+    <a href="https://github.com/block/goose" target="_blank" class="btn-goose">Get Goose — it's free & open source →</a>
   </div>
 </div>
 
@@ -441,7 +291,6 @@
 
 <script>
 (function() {
-  // Parse query params
   const params = new URLSearchParams(window.location.search);
   const question = params.get('q');
 
@@ -450,13 +299,11 @@
   const skipBtn = document.getElementById('skip-btn');
 
   if (question) {
-    // === ANIMATION MODE ===
     generatorEl.style.display = 'none';
     animationEl.classList.add('show');
     skipBtn.classList.add('show');
     runAnimation(question);
   } else {
-    // === GENERATOR MODE ===
     setupGenerator();
   }
 
@@ -470,7 +317,6 @@
     function generate() {
       const q = input.value.trim();
       if (!q) { input.focus(); return; }
-
       const base = window.location.origin + window.location.pathname;
       const url = base + '?q=' + encodeURIComponent(q);
       linkUrl.textContent = url;
@@ -478,65 +324,142 @@
     }
 
     genBtn.addEventListener('click', generate);
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') generate();
-    });
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') generate(); });
 
     copyBtn.addEventListener('click', () => {
-      const url = linkUrl.textContent;
-      navigator.clipboard.writeText(url).then(() => {
+      navigator.clipboard.writeText(linkUrl.textContent).then(() => {
         copyBtn.textContent = '✅ Copied!';
         copyBtn.classList.add('copied');
-        setTimeout(() => {
-          copyBtn.textContent = '📋 Copy';
-          copyBtn.classList.remove('copied');
-        }, 2000);
+        setTimeout(() => { copyBtn.textContent = '📋 Copy'; copyBtn.classList.remove('copied'); }, 2000);
       });
     });
+  }
+
+  // Generate a plausible Goose-style answer based on the question
+  function generateAnswer(q) {
+    const lower = q.toLowerCase().replace(/[?!.]+$/g, '').trim();
+
+    // Pattern-matched answers for common question types
+    const patterns = [
+      { match: /how (do|can|to) (i |you )?(install|set up|setup|get|download)/i,
+        answer: (m) => `Here's how to get started:\n\n1. First, check the official documentation for system requirements\n2. Follow the installation guide step by step\n3. Run the setup command and verify the installation\n4. Test with a simple example to confirm everything works\n\nThe docs have a great quickstart guide that walks through each step. Would you like me to look up the specific installation instructions?` },
+
+      { match: /what (is|are|does|do)/i,
+        answer: (m) => `Great question! I looked this up for you.\n\nIn short: this is something you could have easily found by searching the docs, asking me directly, or even just reading the README.\n\nBut here we are. I did the work for you. You're welcome. 🪿\n\nWant me to go deeper on any specific aspect?` },
+
+      { match: /why (is|are|does|do|can|won|isn|aren|doesn|don)/i,
+        answer: (m) => `I analyzed this for you. Here's what I found:\n\nThere are a few common reasons this happens:\n• Configuration mismatch or missing settings\n• Environment-specific differences\n• Outdated dependencies or cached state\n\nThe fix is usually straightforward — check the docs or just ask me next time instead of bothering a human. 🪿` },
+
+      { match: /where (is|are|can|do)/i,
+        answer: (m) => `I found it! Here's where to look:\n\n📁 Check the project documentation — it's usually in the README or the docs/ folder\n🔍 You can also search the codebase directly\n💡 Pro tip: next time, just ask me. I'm literally designed for this.\n\nNeed me to narrow it down further?` },
+
+      { match: /can (i|you|we|someone)/i,
+        answer: (m) => `Short answer: Yes, absolutely.\n\nLonger answer: Here's how to do it:\n1. Check that you have the right permissions and setup\n2. Follow the standard workflow in the documentation\n3. Test it in a safe environment first\n\nThis is all in the docs, by the way. Just saying. 🪿` },
+
+      { match: /how (much|many|long|often)/i,
+        answer: (m) => `Based on what I found:\n\nThe answer depends on your specific context, but the documentation and FAQs cover the most common scenarios in detail.\n\nI could give you exact numbers if you tell me more about your setup. Or, you know, you could just ask me directly next time. 🪿` },
+
+      { match: /(fix|solve|resolve|debug|error|issue|problem|broken|not working|doesn't work|won't)/i,
+        answer: (m) => `I looked into this. Here's my debugging checklist:\n\n1. ✅ Check the error message carefully — it usually tells you exactly what's wrong\n2. ✅ Verify your configuration and environment variables\n3. ✅ Make sure all dependencies are up to date\n4. ✅ Try clearing caches and restarting\n5. ✅ Check the GitHub issues — someone probably hit this before\n\nIf none of that works, paste me the full error and I'll dig deeper. That's literally what I'm here for. 🪿` },
+
+      { match: /(should i|which|best|recommend|better|compare)/i,
+        answer: (m) => `Here's my take:\n\nIt depends on your specific needs, but here's a quick comparison:\n\n• Option A: Better for simplicity and getting started fast\n• Option B: Better for scale and long-term flexibility\n\nMy recommendation? Start simple, iterate later. And next time — just ask me. I love this stuff. 🪿` },
+
+      { match: /(help|stuck|confused|don't understand|lost)/i,
+        answer: (m) => `No worries, I've got you! Let me break this down:\n\n1. Start with the basics — make sure you understand the core concepts\n2. Follow the getting-started guide step by step\n3. Don't skip the examples — they're there for a reason\n4. If you get stuck, just ask me. Seriously.\n\nYou've got this. And I'm always here. 🪿` },
+    ];
+
+    for (const p of patterns) {
+      const m = lower.match(p.match);
+      if (m) return p.answer(m);
+    }
+
+    // Default catch-all answer
+    return `I looked into "${q}" for you. Here's what I found:\n\nThis is a pretty common question, and the answer is well-documented. A quick search of the docs, a skim of the README, or — hear me out — just asking me directly would have gotten you here in seconds.\n\nBut instead, someone had to send you this link. So here we are.\n\nThe good news: now you know about Goose. Next time, skip the middleman and ask me directly. I'm fast, I'm free, and I don't judge. Much. 🪿`;
   }
 
   function runAnimation(text) {
     const typedOutput = document.getElementById('typed-output');
     const cursor = document.getElementById('cursor');
     const thinking = document.getElementById('thinking');
+    const gooseResponse = document.getElementById('goose-response');
+    const gooseAnswer = document.getElementById('goose-answer');
     const reveal = document.getElementById('reveal');
+    const terminalBody = document.getElementById('terminal-body');
     let i = 0;
     let cancelled = false;
 
-    function showReveal() {
-      cursor.style.display = 'none';
-      thinking.classList.remove('show');
-      reveal.classList.add('show');
-      skipBtn.classList.remove('show');
+    const answer = generateAnswer(text);
+
+    function scrollTerminal() {
+      terminalBody.scrollTop = terminalBody.scrollHeight;
     }
 
-    skipBtn.addEventListener('click', () => {
+    function showFullReveal() {
       cancelled = true;
       typedOutput.textContent = text;
-      showReveal();
-    });
+      cursor.style.display = 'none';
+      thinking.classList.remove('show');
+      gooseResponse.classList.add('show');
+      gooseAnswer.textContent = answer;
+      reveal.classList.add('show');
+      skipBtn.classList.remove('show');
+      scrollTerminal();
+    }
 
-    function typeChar() {
+    skipBtn.addEventListener('click', showFullReveal);
+
+    // Phase 1: Type the question
+    function typeQuestion() {
       if (cancelled) return;
       if (i < text.length) {
         typedOutput.textContent += text[i];
         i++;
-        setTimeout(typeChar, 50 + Math.random() * 60);
+        scrollTerminal();
+        setTimeout(typeQuestion, 45 + Math.random() * 55);
       } else {
-        // Done typing — show thinking
+        // Phase 2: Show thinking
         setTimeout(() => {
           if (cancelled) return;
+          cursor.style.display = 'none';
           thinking.classList.add('show');
-          // After thinking, reveal
+          scrollTerminal();
+
+          // Phase 3: Start typing the answer
           setTimeout(() => {
             if (cancelled) return;
-            showReveal();
-          }, 2500);
-        }, 500);
+            thinking.classList.remove('show');
+            gooseResponse.classList.add('show');
+            scrollTerminal();
+            typeAnswer(0);
+          }, 2000);
+        }, 400);
       }
     }
 
-    setTimeout(typeChar, 800);
+    // Phase 3: Type the answer character by character
+    function typeAnswer(j) {
+      if (cancelled) return;
+      if (j < answer.length) {
+        // Type in chunks for speed (3-6 chars at a time for answer)
+        const chunkSize = Math.floor(Math.random() * 4) + 2;
+        const chunk = answer.slice(j, j + chunkSize);
+        gooseAnswer.textContent += chunk;
+        scrollTerminal();
+        const delay = chunk.includes('\n') ? 80 : (12 + Math.random() * 18);
+        setTimeout(() => typeAnswer(j + chunkSize), delay);
+      } else {
+        // Phase 4: Reveal the snarky banner
+        setTimeout(() => {
+          if (cancelled) return;
+          reveal.classList.add('show');
+          skipBtn.classList.remove('show');
+          scrollTerminal();
+        }, 800);
+      }
+    }
+
+    setTimeout(typeQuestion, 600);
   }
 })();
 </script>
