@@ -14,7 +14,6 @@
   :root{--bg:#0a0e1a;--surface:#131829;--surface2:#1a2035;--border:#2a3050;--orange:#ff6b2b;--orange-glow:rgba(255,107,43,0.3);--text:#e8ecf4;--text-dim:#7a8299;--green:#4ade80;--terminal-bg:#0d1117}
   body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow-x:hidden}
 
-  /* Generator */
   #generator{text-align:center;padding:2rem;max-width:640px;width:100%;animation:fadeIn .6s ease}
   @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
   .logo{font-size:4rem;margin-bottom:.5rem;filter:drop-shadow(0 0 20px var(--orange-glow))}
@@ -30,11 +29,13 @@
   .btn-primary:active{transform:translateY(0)}
   .btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none}
 
-  /* Answer preview */
+  .loading-indicator{display:none;align-items:center;gap:.5rem;justify-content:center;padding:1rem;color:var(--text-dim)}
+  .loading-indicator.show{display:flex}
+
   #answer-section{display:none;margin-bottom:1.5rem;text-align:left;animation:fadeIn .4s ease}
   #answer-section.show{display:block}
   .answer-box{background:var(--terminal-bg);border:1px solid var(--border);border-radius:12px;padding:1.2rem;margin-bottom:1rem}
-  .answer-label{font-size:.8rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;font-weight:600;display:flex;align-items:center;gap:.5rem}
+  .answer-label{font-size:.8rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;font-weight:600}
   .answer-preview{color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.82rem;line-height:1.7;white-space:pre-wrap;word-wrap:break-word;max-height:200px;overflow-y:auto}
   .answer-actions{display:flex;gap:.5rem;flex-wrap:wrap}
   .btn-sm{padding:.6rem 1rem;border-radius:8px;border:2px solid var(--border);background:var(--surface2);color:var(--text);font-size:.85rem;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;font-weight:600}
@@ -43,7 +44,6 @@
   .btn-sm.primary{border-color:var(--orange);background:var(--orange);color:#fff}
   .btn-sm.primary:hover{background:#e85d20}
 
-  /* Link output */
   #link-output{display:none;background:var(--surface);border:2px solid var(--border);border-radius:14px;padding:1.2rem;text-align:left;animation:fadeIn .4s ease}
   #link-output.show{display:block}
   .link-label{font-size:.8rem;color:var(--text-dim);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.5rem;font-weight:600}
@@ -56,11 +56,6 @@
   .footer-note a{color:var(--orange);text-decoration:none}
   .footer-note a:hover{text-decoration:underline}
 
-  /* Loading indicator for generator */
-  .loading-indicator{display:none;align-items:center;gap:.5rem;justify-content:center;padding:1rem;color:var(--text-dim)}
-  .loading-indicator.show{display:flex}
-
-  /* Animation page */
   #animation{display:none;width:100%;max-width:760px;padding:1.5rem;animation:fadeIn .5s ease}
   #animation.show{display:block}
   .terminal{background:var(--terminal-bg);border-radius:14px;border:1px solid var(--border);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5)}
@@ -74,12 +69,10 @@
   .typed-text{color:var(--text)}
   .cursor-blink{display:inline-block;width:9px;height:1.1em;background:var(--orange);vertical-align:text-bottom;animation:blink 1s step-end infinite}
   @keyframes blink{50%{opacity:0}}
-
   .goose-response{margin-top:1.2rem;padding:1rem 0;border-top:1px solid var(--border);display:none}
   .goose-response.show{display:block}
   .goose-header{display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;color:var(--orange);font-weight:700;font-size:.9rem}
   .goose-answer{color:var(--text);line-height:1.8;white-space:pre-wrap;word-wrap:break-word}
-
   .thinking-inline{color:var(--text-dim);display:none;margin-top:.75rem}
   .thinking-inline.show{display:flex;align-items:center;gap:.5rem}
   .spinner{width:16px;height:16px;border:2px solid var(--border);border-top-color:var(--orange);border-radius:50%;animation:spin .8s linear infinite}
@@ -94,16 +87,18 @@
   .btn-goose{display:inline-block;padding:.8rem 2rem;border-radius:10px;background:linear-gradient(135deg,var(--orange),#e85d20);color:#fff;text-decoration:none;font-weight:700;font-size:1rem;transition:all .2s;box-shadow:0 4px 15px var(--orange-glow);font-family:'Inter',sans-serif}
   .btn-goose:hover{transform:translateY(-2px);box-shadow:0 6px 25px var(--orange-glow)}
 
-  #skip-btn{position:fixed;bottom:1.5rem;right:1.5rem;padding:.5rem 1rem;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text-dim);font-size:.8rem;cursor:pointer;display:none;font-family:'Inter',sans-serif;transition:all .2s}
+  #skip-btn{position:fixed;bottom:1.5rem;right:1.5rem;padding:.5rem 1rem;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text-dim);font-size:.8rem;cursor:pointer;display:none;font-family:'Inter',sans-serif;transition:all .2s;z-index:10}
   #skip-btn.show{display:block}
   #skip-btn:hover{border-color:var(--orange);color:var(--text)}
+
+  .error-msg{color:#ff5f57;font-size:.85rem;padding:.5rem;display:none}
+  .error-msg.show{display:block}
 
   @media(max-width:600px){.input-group{flex-direction:column}h1{font-size:1.5rem}.terminal-body{font-size:.75rem;padding:1rem}.reveal-text{font-size:1.3rem}.answer-actions{flex-direction:column}}
 </style>
 </head>
 <body>
 
-<!-- GENERATOR -->
 <div id="generator">
   <div class="logo">🪿</div>
   <h1>Let Me Goose That For You</h1>
@@ -112,12 +107,11 @@
     <input type="text" id="question-input" placeholder="Type their question here..." autofocus>
     <button class="btn btn-primary" id="generate-btn">Ask Goose 🪿</button>
   </div>
-
   <div class="loading-indicator" id="loading">
     <div class="spinner"></div>
     <span>Goose is thinking...</span>
   </div>
-
+  <div class="error-msg" id="error-msg"></div>
   <div id="answer-section">
     <div class="answer-box">
       <div class="answer-label">🪿 Goose's Answer</div>
@@ -128,7 +122,6 @@
       <button class="btn-sm" id="regenerate-btn">🔄 Regenerate</button>
     </div>
   </div>
-
   <div id="link-output">
     <div class="link-label">Share this link 👇</div>
     <div class="link-row">
@@ -136,13 +129,9 @@
       <button class="btn-copy" id="copy-btn">📋 Copy</button>
     </div>
   </div>
-
-  <p class="footer-note">
-    Powered by <a href="https://github.com/block/goose" target="_blank">Goose</a> — the open-source AI agent by Block
-  </p>
+  <p class="footer-note">Powered by <a href="https://github.com/block/goose" target="_blank">Goose</a> — the open-source AI agent by Block</p>
 </div>
 
-<!-- ANIMATION -->
 <div id="animation">
   <div class="terminal">
     <div class="terminal-bar">
@@ -191,67 +180,83 @@
     animationEl.classList.add('show');
     skipBtn.classList.add('show');
 
-    // Decompress answer from URL or fetch live
     if (compressedAnswer) {
-      const answer = LZString.decompressFromEncodedURIComponent(compressedAnswer);
-      if (answer) {
-        runAnimation(question, answer);
-      } else {
-        fetchAnswerAndAnimate(question);
+      try {
+        const answer = LZString.decompressFromEncodedURIComponent(compressedAnswer);
+        if (answer && answer.length > 0) {
+          runAnimation(question, answer);
+        } else {
+          fetchAndAnimate(question);
+        }
+      } catch(e) {
+        fetchAndAnimate(question);
       }
     } else {
-      fetchAnswerAndAnimate(question);
+      fetchAndAnimate(question);
     }
   } else {
     setupGenerator();
   }
 
-  // ===== LLM API CALL =====
+  // ===== FREE LLM API (Pollinations.ai - no auth needed) =====
   async function askGoose(q) {
-    const systemPrompt = `You are Goose, an open-source AI agent made by Block (the company behind Square, Cash App, and Tidal). You are helpful, concise, and slightly witty. Answer the user's question directly and helpfully in 2-4 short paragraphs. Use plain text only (no markdown). Keep it under 600 characters. Be genuinely helpful but sprinkle in a tiny bit of personality.`;
+    const prompt = encodeURIComponent(
+      'You are Goose, an open-source AI agent made by Block (the company behind Square, Cash App, and Tidal). ' +
+      'Answer this question helpfully and concisely in 2-3 short paragraphs. Keep it under 500 characters total. ' +
+      'Be genuinely helpful. Do not use markdown formatting. Question: ' + q
+    );
 
     try {
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'meta-llama/llama-3.1-8b-instruct:free',
-          messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: q }
-          ],
-          max_tokens: 300,
-          temperature: 0.7
-        })
+      const response = await fetch('https://text.pollinations.ai/' + prompt, {
+        method: 'GET',
       });
 
-      if (!response.ok) throw new Error('API error');
-      const data = await response.json();
-      return data.choices?.[0]?.message?.content?.trim() || fallbackAnswer(q);
+      if (!response.ok) throw new Error('API error: ' + response.status);
+      const text = await response.text();
+      return text.trim() || fallbackAnswer(q);
     } catch (e) {
-      console.error('LLM API failed:', e);
+      console.error('API failed:', e);
       return fallbackAnswer(q);
     }
   }
 
   function fallbackAnswer(q) {
-    return 'I\'d love to answer "' + q + '" for you in detail, but it looks like my AI backend is taking a nap.\n\nThe good news? You can ask me this exact question directly by installing Goose. I\'m free, open source, and I run locally on your machine — no API needed.\n\nJust head to github.com/block/goose and set me up. Takes about 2 minutes. Then ask me anything. 🪿';
+    return 'Great question! While my AI backend is momentarily unavailable, I can tell you that this is exactly the kind of thing Goose handles brilliantly.\n\nGoose is a free, open-source AI agent by Block that runs locally on your machine. It can answer questions, write code, automate tasks, and much more — no API keys needed.\n\nGet it at github.com/block/goose and ask me anything directly!';
   }
 
-  // ===== FETCH + ANIMATE (for viewer side) =====
-  async function fetchAnswerAndAnimate(q) {
-    // Start typing the question immediately
+  // ===== FETCH ANSWER LIVE + ANIMATE (for viewer with no pre-baked answer) =====
+  async function fetchAndAnimate(q) {
     const typedOutput = document.getElementById('typed-output');
     const cursor = document.getElementById('cursor');
     const thinking = document.getElementById('thinking');
+    const terminalBody = document.getElementById('terminal-body');
+    let cancelled = false;
 
-    // Type question first
+    function scroll() { terminalBody.scrollTop = terminalBody.scrollHeight; }
+
+    skipBtn.addEventListener('click', () => {
+      cancelled = true;
+      typedOutput.textContent = q;
+      cursor.style.display = 'none';
+      thinking.classList.remove('show');
+      // Show fallback immediately
+      const gr = document.getElementById('goose-response');
+      gr.classList.add('show');
+      document.getElementById('goose-answer').textContent = fallbackAnswer(q);
+      document.getElementById('reveal').classList.add('show');
+      skipBtn.classList.remove('show');
+      scroll();
+    });
+
+    // Phase 1: Type question
     let i = 0;
     await new Promise(resolve => {
       function typeChar() {
+        if (cancelled) { resolve(); return; }
         if (i < q.length) {
           typedOutput.textContent += q[i];
           i++;
+          scroll();
           setTimeout(typeChar, 45 + Math.random() * 55);
         } else {
           resolve();
@@ -260,22 +265,28 @@
       setTimeout(typeChar, 600);
     });
 
-    // Show thinking while fetching
+    if (cancelled) return;
+
+    // Phase 2: Show thinking + fetch answer simultaneously
     cursor.style.display = 'none';
     thinking.classList.add('show');
+    scroll();
 
     const answer = await askGoose(q);
 
-    // Now run the answer part of the animation
+    if (cancelled) return;
+
+    // Phase 3: Type answer
     thinking.classList.remove('show');
     typeAnswerAndReveal(answer);
   }
 
-  // ===== GENERATOR =====
+  // ===== GENERATOR PAGE =====
   function setupGenerator() {
     const input = document.getElementById('question-input');
     const genBtn = document.getElementById('generate-btn');
     const loading = document.getElementById('loading');
+    const errorMsg = document.getElementById('error-msg');
     const answerSection = document.getElementById('answer-section');
     const answerPreview = document.getElementById('answer-preview');
     const createLinkBtn = document.getElementById('create-link-btn');
@@ -293,19 +304,24 @@
       currentQuestion = q;
 
       genBtn.disabled = true;
-      genBtn.textContent = 'Thinking...';
+      genBtn.textContent = '🪿 Thinking...';
       loading.classList.add('show');
       answerSection.classList.remove('show');
       linkOutput.classList.remove('show');
+      errorMsg.classList.remove('show');
 
-      currentAnswer = await askGoose(q);
+      try {
+        currentAnswer = await askGoose(q);
+        answerPreview.textContent = currentAnswer;
+        answerSection.classList.add('show');
+      } catch(e) {
+        errorMsg.textContent = '⚠️ Failed to get answer. Try again.';
+        errorMsg.classList.add('show');
+      }
 
       loading.classList.remove('show');
       genBtn.disabled = false;
       genBtn.textContent = 'Ask Goose 🪿';
-
-      answerPreview.textContent = currentAnswer;
-      answerSection.classList.add('show');
     }
 
     genBtn.addEventListener('click', generate);
@@ -314,7 +330,7 @@
     regenerateBtn.addEventListener('click', async () => {
       if (!currentQuestion) return;
       regenerateBtn.disabled = true;
-      regenerateBtn.textContent = '🔄 Regenerating...';
+      regenerateBtn.textContent = '🔄 Thinking...';
       currentAnswer = await askGoose(currentQuestion);
       answerPreview.textContent = currentAnswer;
       regenerateBtn.disabled = false;
@@ -339,7 +355,7 @@
     });
   }
 
-  // ===== FULL ANIMATION (question + answer pre-loaded) =====
+  // ===== FULL ANIMATION (pre-baked answer from URL) =====
   function runAnimation(text, answer) {
     const typedOutput = document.getElementById('typed-output');
     const cursor = document.getElementById('cursor');
@@ -349,9 +365,9 @@
     let i = 0;
     let cancelled = false;
 
-    function scrollTerminal() { terminalBody.scrollTop = terminalBody.scrollHeight; }
+    function scroll() { terminalBody.scrollTop = terminalBody.scrollHeight; }
 
-    function showFullReveal() {
+    function showFull() {
       cancelled = true;
       typedOutput.textContent = text;
       cursor.style.display = 'none';
@@ -361,24 +377,24 @@
       document.getElementById('goose-answer').textContent = answer;
       reveal.classList.add('show');
       skipBtn.classList.remove('show');
-      scrollTerminal();
+      scroll();
     }
 
-    skipBtn.addEventListener('click', showFullReveal);
+    skipBtn.addEventListener('click', showFull);
 
     function typeQuestion() {
       if (cancelled) return;
       if (i < text.length) {
         typedOutput.textContent += text[i];
         i++;
-        scrollTerminal();
+        scroll();
         setTimeout(typeQuestion, 45 + Math.random() * 55);
       } else {
         setTimeout(() => {
           if (cancelled) return;
           cursor.style.display = 'none';
           thinking.classList.add('show');
-          scrollTerminal();
+          scroll();
           setTimeout(() => {
             if (cancelled) return;
             thinking.classList.remove('show');
@@ -391,7 +407,7 @@
     setTimeout(typeQuestion, 600);
   }
 
-  // ===== TYPE ANSWER + REVEAL =====
+  // ===== TYPE ANSWER CHARACTER BY CHARACTER + REVEAL =====
   function typeAnswerAndReveal(answer) {
     const gooseResponse = document.getElementById('goose-response');
     const gooseAnswer = document.getElementById('goose-answer');
@@ -399,8 +415,7 @@
     const terminalBody = document.getElementById('terminal-body');
 
     gooseResponse.classList.add('show');
-
-    function scrollTerminal() { terminalBody.scrollTop = terminalBody.scrollHeight; }
+    function scroll() { terminalBody.scrollTop = terminalBody.scrollHeight; }
 
     let j = 0;
     function typeAnswer() {
@@ -408,15 +423,15 @@
         const chunkSize = Math.floor(Math.random() * 4) + 2;
         const chunk = answer.slice(j, j + chunkSize);
         gooseAnswer.textContent += chunk;
-        scrollTerminal();
-        const delay = chunk.includes('\n') ? 80 : (10 + Math.random() * 15);
+        scroll();
+        const delay = chunk.includes('\n') ? 60 : (8 + Math.random() * 12);
         setTimeout(typeAnswer, delay);
         j += chunkSize;
       } else {
         setTimeout(() => {
           reveal.classList.add('show');
           skipBtn.classList.remove('show');
-          scrollTerminal();
+          scroll();
         }, 800);
       }
     }
