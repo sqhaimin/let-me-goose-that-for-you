@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Let Me Goose That For You 🪿</title>
+<meta name="description" content="For people who find it more convenient to bother you than to ask Goose.">
+<meta property="og:title" content="Let Me Goose That For You 🪿">
+<meta property="og:description" content="Someone thought you should try asking Goose...">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0e1a;
+    --surface: #131829;
+    --surface2: #1a2035;
+    --border: #2a3050;
+    --orange: #ff6b2b;
+    --orange-glow: rgba(255, 107, 43, 0.3);
+    --text: #e8ecf4;
+    --text-dim: #7a8299;
+    --green: #4ade80;
+    --terminal-bg: #0d1117;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* ===== GENERATOR PAGE ===== */
+  #generator {
+    text-align: center;
+    padding: 2rem;
+    max-width: 640px;
+    width: 100%;
+    animation: fadeIn 0.6s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .logo {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 0 20px var(--orange-glow));
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+    background: linear-gradient(135deg, var(--orange), #ff9a5c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+  }
+
+  .input-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .input-group input {
+    flex: 1;
+    padding: 0.9rem 1.2rem;
+    border-radius: 12px;
+    border: 2px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .input-group input:focus {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px var(--orange-glow);
+  }
+
+  .input-group input::placeholder {
+    color: var(--text-dim);
+  }
+
+  .btn {
+    padding: 0.9rem 1.5rem;
+    border-radius: 12px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--orange), #e85d20);
+    color: white;
+    box-shadow: 0 4px 15px var(--orange-glow);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px var(--orange-glow);
+  }
+
+  .btn-primary:active { transform: translateY(0); }
+
+  /* Link output */
+  #link-output {
+    display: none;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 1.2rem;
+    text-align: left;
+    animation: fadeIn 0.4s ease;
+  }
+
+  #link-output.show { display: block; }
+
+  .link-label {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  .link-row {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .link-url {
+    flex: 1;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    background: var(--terminal-bg);
+    border: 1px solid var(--border);
+    color: var(--orange);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: text;
+    user-select: all;
+  }
+
+  .btn-copy {
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    background: var(--surface2);
+    color: var(--text);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+  }
+
+  .btn-copy:hover {
+    border-color: var(--orange);
+    background: var(--surface);
+  }
+
+  .btn-copy.copied {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .footer-note {
+    margin-top: 2rem;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+  }
+
+  .footer-note a {
+    color: var(--orange);
+    text-decoration: none;
+  }
+
+  .footer-note a:hover { text-decoration: underline; }
+
+  /* ===== ANIMATION PAGE ===== */
+  #animation {
+    display: none;
+    width: 100%;
+    max-width: 720px;
+    padding: 1.5rem;
+    animation: fadeIn 0.5s ease;
+  }
+
+  #animation.show { display: block; }
+
+  .terminal {
+    background: var(--terminal-bg);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+
+  .terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .dot-red { background: #ff5f57; }
+  .dot-yellow { background: #febc2e; }
+  .dot-green { background: #28c840; }
+
+  .terminal-title {
+    flex: 1;
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+
+  .terminal-body {
+    padding: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    min-height: 280px;
+  }
+
+  .prompt-line {
+    color: var(--text-dim);
+  }
+
+  .prompt-marker {
+    color: var(--orange);
+    font-weight: 700;
+  }
+
+  .typed-text {
+    color: var(--text);
+  }
+
+  .cursor-blink {
+    display: inline-block;
+    width: 9px;
+    height: 1.1em;
+    background: var(--orange);
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .thinking {
+    color: var(--text-dim);
+    margin-top: 1rem;
+    display: none;
+  }
+
+  .thinking.show { display: block; }
+
+  .thinking-dots::after {
+    content: '';
+    animation: dots 1.5s steps(4, end) infinite;
+  }
+
+  @keyframes dots {
+    0% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+  }
+
+  /* Reveal */
+  #reveal {
+    display: none;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    animation: revealPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  #reveal.show { display: block; }
+
+  @keyframes revealPop {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .reveal-emoji { font-size: 3rem; margin-bottom: 0.5rem; }
+
+  .reveal-text {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--orange), #ff9a5c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .reveal-sub {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .btn-goose {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--orange), #e85d20);
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px var(--orange-glow);
+  }
+
+  .btn-goose:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px var(--orange-glow);
+  }
+
+  #skip-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: none;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s;
+  }
+
+  #skip-btn.show { display: block; }
+  #skip-btn:hover { border-color: var(--orange); color: var(--text); }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .input-group { flex-direction: column; }
+    h1 { font-size: 1.5rem; }
+    .terminal-body { font-size: 0.8rem; padding: 1rem; }
+    .reveal-text { font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== GENERATOR PAGE ===== -->
+<div id="generator">
+  <div class="logo">🪿</div>
+  <h1>Let Me Goose That For You</h1>
+  <p class="subtitle">For people who find it more convenient to bother you<br>than to ask Goose.</p>
+
+  <div class="input-group">
+    <input type="text" id="question-input" placeholder="Type their question here..." autofocus>
+    <button class="btn btn-primary" id="generate-btn">Goose it 🪿</button>
+  </div>
+
+  <div id="link-output">
+    <div class="link-label">Share this link 👇</div>
+    <div class="link-row">
+      <div class="link-url" id="link-url"></div>
+      <button class="btn-copy" id="copy-btn">📋 Copy</button>
+    </div>
+  </div>
+
+  <p class="footer-note">
+    Powered by <a href="https://github.com/block/goose" target="_blank">Goose</a> — the open-source AI agent by Block
+  </p>
+</div>
+
+<!-- ===== ANIMATION PAGE ===== -->
+<div id="animation">
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="terminal-dot dot-red"></div>
+      <div class="terminal-dot dot-yellow"></div>
+      <div class="terminal-dot dot-green"></div>
+      <div class="terminal-title">goose — session</div>
+    </div>
+    <div class="terminal-body">
+      <div class="prompt-line">
+        <span class="prompt-marker">goose&gt; </span>
+        <span class="typed-text" id="typed-output"></span><span class="cursor-blink" id="cursor"></span>
+      </div>
+      <div class="thinking" id="thinking">
+        <span style="color: var(--orange);">🪿 Goose is thinking</span><span class="thinking-dots"></span>
+      </div>
+      <div id="reveal">
+        <div class="reveal-emoji">🪿</div>
+        <div class="reveal-text">Was that so hard?</div>
+        <p class="reveal-sub">Next time, just ask Goose.</p>
+        <a href="https://github.com/block/goose" target="_blank" class="btn-goose">Try Goose yourself →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button id="skip-btn">skip this »</button>
+
+<script>
+(function() {
+  // Parse query params
+  const params = new URLSearchParams(window.location.search);
+  const question = params.get('q');
+
+  const generatorEl = document.getElementById('generator');
+  const animationEl = document.getElementById('animation');
+  const skipBtn = document.getElementById('skip-btn');
+
+  if (question) {
+    // === ANIMATION MODE ===
+    generatorEl.style.display = 'none';
+    animationEl.classList.add('show');
+    skipBtn.classList.add('show');
+    runAnimation(question);
+  } else {
+    // === GENERATOR MODE ===
+    setupGenerator();
+  }
+
+  function setupGenerator() {
+    const input = document.getElementById('question-input');
+    const genBtn = document.getElementById('generate-btn');
+    const linkOutput = document.getElementById('link-output');
+    const linkUrl = document.getElementById('link-url');
+    const copyBtn = document.getElementById('copy-btn');
+
+    function generate() {
+      const q = input.value.trim();
+      if (!q) { input.focus(); return; }
+
+      const base = window.location.origin + window.location.pathname;
+      const url = base + '?q=' + encodeURIComponent(q);
+      linkUrl.textContent = url;
+      linkOutput.classList.add('show');
+    }
+
+    genBtn.addEventListener('click', generate);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') generate();
+    });
+
+    copyBtn.addEventListener('click', () => {
+      const url = linkUrl.textContent;
+      navigator.clipboard.writeText(url).then(() => {
+        copyBtn.textContent = '✅ Copied!';
+        copyBtn.classList.add('copied');
+        setTimeout(() => {
+          copyBtn.textContent = '📋 Copy';
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+  }
+
+  function runAnimation(text) {
+    const typedOutput = document.getElementById('typed-output');
+    const cursor = document.getElementById('cursor');
+    const thinking = document.getElementById('thinking');
+    const reveal = document.getElementById('reveal');
+    let i = 0;
+    let cancelled = false;
+
+    function showReveal() {
+      cursor.style.display = 'none';
+      thinking.classList.remove('show');
+      reveal.classList.add('show');
+      skipBtn.classList.remove('show');
+    }
+
+    skipBtn.addEventListener('click', () => {
+      cancelled = true;
+      typedOutput.textContent = text;
+      showReveal();
+    });
+
+    function typeChar() {
+      if (cancelled) return;
+      if (i < text.length) {
+        typedOutput.textContent += text[i];
+        i++;
+        setTimeout(typeChar, 50 + Math.random() * 60);
+      } else {
+        // Done typing — show thinking
+        setTimeout(() => {
+          if (cancelled) return;
+          thinking.classList.add('show');
+          // After thinking, reveal
+          setTimeout(() => {
+            if (cancelled) return;
+            showReveal();
+          }, 2500);
+        }, 500);
+      }
+    }
+
+    setTimeout(typeChar, 800);
+  }
+})();
+</script>
+</body>
+</html>
